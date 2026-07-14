@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>禅道周报助手</title>
+        <link rel="stylesheet" href="popup.css" />
+    </head>
+    <body>
+        <div class="app">
+            <header class="header">
+                <div class="header-main">
+                    <h1>禅道周报助手</h1>
+                    <p class="subtitle">适配企业微信 · 分块复制粘贴</p>
+                </div>
+                <button
+                    id="settingsToggle"
+                    class="icon-btn"
+                    type="button"
+                    title="服务器设置"
+                    aria-expanded="false"
+                    aria-controls="settingsPanel"
+                >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 15.5A3.5 3.5 0 1 0 12 8.5a3.5 3.5 0 0 0 0 7Z" stroke="currentColor" stroke-width="1.8" />
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l-.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
+            </header>
+
+            <section class="status-card" id="statusCard">
+                <div class="status-row">
+                    <span class="status-dot" id="statusDot"></span>
+                    <span class="status-label" id="statusLabel">检测登录状态中…</span>
+                    <span class="status-sep hidden" id="statusSep">·</span>
+                    <span class="user-name hidden" id="userName">—</span>
+                </div>
+            </section>
+
+            <section class="actions">
+                <button id="dailyBtn" class="btn btn-primary" type="button">生成今日日报</button>
+                <button id="weeklyBtn" class="btn btn-primary" type="button">生成本周周报</button>
+            </section>
+
+            <section class="report-section hidden" id="reportSection">
+                <div class="report-toolbar">
+                    <span id="reportMeta">报告预览</span>
+                    <div class="report-toolbar-actions">
+                        <button id="copyAllBtn" class="btn btn-secondary btn-sm" type="button" disabled>复制全部</button>
+                        <button id="exportTxtBtn" class="btn btn-secondary btn-sm" type="button" disabled>导出 TXT</button>
+                    </div>
+                </div>
+
+                <div class="report-block">
+                    <div class="report-block-header">
+                        <h2 class="report-block-title" id="summaryTitle">工作总结</h2>
+                        <button id="copySummaryBtn" class="btn btn-secondary btn-sm" type="button" disabled>复制</button>
+                    </div>
+                    <textarea id="summaryOutput" class="report-textarea" readonly placeholder="生成后显示…"></textarea>
+                </div>
+
+                <div class="report-block">
+                    <div class="report-block-header">
+                        <h2 class="report-block-title" id="planTitle">工作计划</h2>
+                        <button id="copyPlanBtn" class="btn btn-secondary btn-sm" type="button" disabled>复制</button>
+                    </div>
+                    <textarea id="planOutput" class="report-textarea" readonly placeholder="生成后显示…"></textarea>
+                </div>
+
+                <p class="report-tip">粘贴到企业微信：分别复制到「工作总结」「工作计划」输入框（内容不含标题）</p>
+            </section>
+
+            <section class="report-empty" id="reportEmpty">
+                <p>点击上方按钮生成报告</p>
+            </section>
+
+            <section class="settings-panel" id="settingsPanel" hidden>
+                <div class="settings-panel-inner">
+                    <div class="settings-title">服务器设置</div>
+                    <label for="baseUrl">禅道地址</label>
+                    <input id="baseUrl" type="url" placeholder="https://your-zentao-domain.com" />
+                    <button id="saveConfigBtn" class="btn btn-secondary btn-block" type="button" style="margin-bottom: 5px">
+                        保存并授权
+                    </button>
+                    <button id="diagBtn" class="btn btn-secondary btn-block" type="button">诊断连接</button>
+                    <pre id="diagOutput" class="diag-output hidden"></pre>
+                    <p class="settings-hint">
+                        首次使用请填写公司禅道地址并点击「保存并授权」。源码默认不含内网地址，打包给同事前可在 lib/config.js 修改
+                        DEFAULT_BASE_URL。
+                    </p>
+                </div>
+            </section>
+        </div>
+        <script src="popup.js" type="module"></script>
+    </body>
+</html>
