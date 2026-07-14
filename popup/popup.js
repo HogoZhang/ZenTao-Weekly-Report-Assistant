@@ -1,3 +1,5 @@
+import { requestHostPermission } from '../lib/config.js';
+
 const statusDot = document.getElementById('statusDot');
 const statusLabel = document.getElementById('statusLabel');
 const statusSep = document.getElementById('statusSep');
@@ -146,6 +148,13 @@ saveConfigBtn.addEventListener('click', async () => {
   if (!url) {
     setStatus(false, '请填写禅道地址', null);
     setSettingsOpen(true);
+    return;
+  }
+
+  try {
+    await requestHostPermission(url);
+  } catch (error) {
+    setStatus(false, error.message || '授权失败', null);
     return;
   }
 
