@@ -35,7 +35,7 @@ body {
 }
 
 .header-logo {
-  width: 36px;
+  width: 40px;
   height: 36px;
   border-radius: 8px;
   flex-shrink: 0;
@@ -178,6 +178,12 @@ body {
 
 .btn-primary:hover:not(:disabled) {
   background: #1d4ed8;
+}
+
+.btn-first {
+  background: #fff;
+  color: #2563eb;
+  border: 1px solid #2563eb;
 }
 
 .btn-secondary {
