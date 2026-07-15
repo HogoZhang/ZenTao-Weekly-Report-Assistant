@@ -12,6 +12,7 @@ const diagBtn = document.getElementById('diagBtn');
 const diagOutput = document.getElementById('diagOutput');
 const dailyBtn = document.getElementById('dailyBtn');
 const weeklyBtn = document.getElementById('weeklyBtn');
+const annualBtn = document.getElementById('annualBtn');
 const reportSection = document.getElementById('reportSection');
 const reportEmpty = document.getElementById('reportEmpty');
 const reportMeta = document.getElementById('reportMeta');
@@ -58,6 +59,7 @@ function setLoading(loading) {
   document.body.classList.toggle('loading', loading);
   dailyBtn.disabled = loading;
   weeklyBtn.disabled = loading;
+  annualBtn.disabled = loading;
   diagBtn.disabled = loading;
 }
 
@@ -233,8 +235,19 @@ function exportTxtFile() {
   URL.revokeObjectURL(url);
 }
 
+function showDevelopingHint(button) {
+  const original = button.textContent;
+  button.textContent = '开发中…';
+  button.classList.add('copy-success');
+  setTimeout(() => {
+    button.textContent = original;
+    button.classList.remove('copy-success');
+  }, 1500);
+}
+
 dailyBtn.addEventListener('click', () => generateReport('daily'));
 weeklyBtn.addEventListener('click', () => generateReport('weekly'));
+annualBtn.addEventListener('click', () => showDevelopingHint(annualBtn));
 
 copySummaryBtn.addEventListener('click', () => copyWithFeedback(copySummaryBtn, summaryOutput.value));
 copyPlanBtn.addEventListener('click', () => copyWithFeedback(copyPlanBtn, planOutput.value));

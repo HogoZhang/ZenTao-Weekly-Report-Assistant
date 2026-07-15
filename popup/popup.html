@@ -3,15 +3,20 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>禅道周报助手</title>
+        <title>慢音禅道周报助手</title>
         <link rel="stylesheet" href="popup.css" />
     </head>
     <body>
         <div class="app">
             <header class="header">
-                <div class="header-main">
-                    <h1>禅道周报助手</h1>
-                    <p class="subtitle">适配企业微信 · 分块复制粘贴</p>
+                <div class="header-brand">
+                    <img src="logo.png" alt="" class="header-logo" width="36" height="36" />
+                    <div class="header-main">
+                        <div class="header-title-row">
+                            <h1>慢音禅道周报助手</h1>
+                            <p class="subtitle">适配企业微信 · 分块复制粘贴</p>
+                        </div>
+                    </div>
                 </div>
                 <button
                     id="settingsToggle"
@@ -44,8 +49,9 @@
             </section>
 
             <section class="actions">
-                <button id="dailyBtn" class="btn btn-primary" type="button">生成今日日报</button>
-                <button id="weeklyBtn" class="btn btn-primary" type="button">生成本周周报</button>
+                <button id="weeklyBtn" class="btn btn-primary" type="button">生成周报</button>
+                <button id="dailyBtn" class="btn btn-primary" type="button">生成日报</button>
+                <button id="annualBtn" class="btn btn-secondary" type="button">生成年度总结</button>
             </section>
 
             <section class="report-section hidden" id="reportSection">

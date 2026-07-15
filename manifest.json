@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "禅道周报助手",
+  "name": "慢音禅道周报助手",
   "version": "0.1.6",
   "description": "从禅道日程、动态、任务一键生成日报/周报",
   "permissions": ["cookies", "storage", "tabs", "scripting"],
   "optional_host_permissions": ["http://*/*", "https://*/*"],
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "禅道周报助手"
+    "default_title": "慢音禅道周报助手"
   },
   "background": {
     "service_worker": "background/service-worker.js",
